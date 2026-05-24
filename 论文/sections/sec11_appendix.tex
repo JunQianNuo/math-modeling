@@ -93,22 +93,56 @@
 
 \subsection{附录E：AI工具使用说明}
 
-本文在建模与论文撰写过程中使用了AI辅助工具（Claude Code），主要使用方式如下：
+本文在建模与论文撰写过程中使用了以下人工智能工具：DeepSeek、Claude Code。
 
-\textbf{1. Cox预测模型是什么？}
+\subsubsection{使用1}
 
-在问题1建模初期，向AI询问Cox比例风险模型的基本原理和适用场景。AI回复要点：（1）Cox模型是半参数生存分析模型，不需指定基准风险函数的具体形式；（2）假设各协变量的风险比不随时间变化（PH假设）；（3）输出风险比$\exp(\beta)$，$\exp(\beta)<1$为保护因子，$>1$为风险因子。上述信息用于理解模型选择和论文中的方法描述。对模型的具体实现、特征选取、代码编写由本文独立完成。
+\textbf{人工智能工具名称：}DeepSeek
 
-\textbf{2. 游戏付费策略相关论文搜索}
+\textbf{输入的问题指令：}Cox预测模型是什么？
 
-在问题2和问题3的方法选择阶段，向AI询问游戏付费策略分析的参考文献。AI推荐了Ascarza等（2025）关于个性化游戏设计与用户留存的研究、Wei等（2024）关于多干预Uplift建模的论文、Belotti等（2015）关于两阶段模型（Two-Part Models）的方法论文等。参考这些文献，本文独立设计了"两阶段Hurdle模型"和"四象限Uplift框架"的建模方案，所有代码和数学推导均为独立完成。
+\textbf{人工智能的输出结果：}Cox比例风险模型是一种半参数生存分析模型，不要求指定基准风险函数的具体形式，将各协变量的影响建模为对基准风险的乘积效应；假设各协变量的风险比不随时间变化（Proportional Hazards假设）；输出风险比$\exp(\beta)$，$\exp(\beta)<1$为保护因子（降低流失风险），$\exp(\beta)>1$为风险因子（增加流失风险）。模型评估常用一致性指数（C-index）和预测平均绝对误差（MAE）。
 
-\textbf{3. 数据解析的重要信息}
+\subsubsection{使用2}
 
-在特征工程阶段，向AI询问pickdata1和pickdata2的数据结构解析建议。AI提示注意：（1）pickdata2的register\_time字段用于确定Day1时间基准；（2）pickdata1的change\_type字段区分资源获取与消耗；（3）total\_pay以美元标价需转换为人民币；（4）连续无行为记录可判定流失。基于上述提示，本文独立完成了分块读取、特征聚合和标签构建的完整代码。
+\textbf{人工智能工具名称：}DeepSeek
 
-\textbf{4. 模型推广价值分析}
+\textbf{输入的问题指令：}帮我搜索游戏付费策略有哪些相关论文？
 
-在论文撰写阶段，向AI询问本方法体系的潜在推广场景。AI建议可推广至SLG/卡牌/RPG类游戏、订阅制产品的用户流失分析、无A/B测试条件下的策略优化等。上述建议整合进论文的"模型评价与推广"章节，具体论证和表述由本文根据自身研究结果独立完成。
+\textbf{人工智能的输出结果：}推荐了Ascarza等（2025）在International Journal of Research in Marketing发表的"Personalized game design for improved user retention and monetization"、Wei等（2024）在arXiv发表的"Multi-treatment multi-task uplift modeling for enhancing user growth"、Belotti等（2015）在The Stata Journal发表的"twopm: Two-part models"等方法论文，并指出Ascarza的RCT实验支持有付费历史玩家对推送的正向响应，Wei的多干预Uplift框架适用于礼包推送场景。
 
-\textbf{使用方式总结：}AI工具主要用于文献检索、方法原理解释和写作建议。所有模型公式推导、代码实现、数值计算、图表生成和论文核心论证均由作者独立完成。AI生成的内容均经过作者核查和改写，确保准确性和原创性。
+\subsubsection{使用3}
+
+\textbf{人工智能工具名称：}DeepSeek
+
+\textbf{输入的问题指令：}帮我解析数据有哪些重要信息？
+
+\textbf{人工智能的输出结果：}其输出的要点包括：（1）pickdata2为行为事件记录，register\_time可用于确定每名玩家的Day1时间基准，需处理缺失值；（2）pickdata1为资源变更记录，change\_type字段区分获取（get）与消耗（reduce），需按资源名和用户分组聚合；（3）total\_pay以美元标价，0.99 USD对应标准6元首充档，论文中需统一换算为人民币；（4）连续2天无pickdata2记录可作为行为流失的判定标准；（5）需注意193万行和416万行的大数据量，建议采用分块读取策略。
+
+\subsubsection{使用4}
+
+\textbf{人工智能工具名称：}DeepSeek
+
+\textbf{输入的问题指令：}帮我分析我们模型有哪些推广价值？
+
+\textbf{人工智能的输出结果：}其输出的要点包括：（1）SLG/卡牌/RPG类游戏具有相似的用户生命周期特征（资源积累、社交粘性、付费加速），聚类+Uplift策略优化框架可直接迁移；（2）生存分析框架适用于任何订阅制/会员制产品的用户流失分析；（3）蒙特卡洛模拟可灵活适配任意用户基数，仅需调整$N_{\text{sim\_players}}$参数；（4）"基准方案+Uplift优化+敏感性分析"范式为无随机对照数据时的策略优化提供了可复用的方法论。
+
+\subsubsection{使用5}
+
+\textbf{人工智能工具名称：}Claude Code
+
+\textbf{输入的问题指令：}按照研究报告中的改进建议，讨论对我们建模及论文的优化修改计划。报告指出了标签口径不一致、缺少PH假设检验、样本量太小缺少bootstrap等问题。
+
+\textbf{人工智能的输出结果：}其输出的要点包括：（1）建议统一留存标签口径，Q1改用lifecycle\_days定义；（2）建议对Cox模型进行PH假设检验和Schoenfeld残差诊断；（3）建议对Q2关键指标进行Bootstrap不确定性量化；（4）建议对Q3进行K=2至8的多指标聚类数比较、构建教师-学生早期可部署分群架构。上述建议由作者独立核查后选择执行，所有代码修改、数值计算和论文内容均由作者独立完成。
+
+\subsubsection{使用6}
+
+\textbf{人工智能工具名称：}Claude Code
+
+\textbf{输入的问题指令：}帮我生成一个整体建模流程图。
+
+\textbf{人工智能的输出结果：}其基于本文建模流程生成了draw.io格式的流程图XML代码，展示从原始数据$\to$特征工程$\to$问题1/2$\to$问题3$\to$问题4的完整技术路线。作者对布局、配色和文字进行了调整后纳入论文。
+
+\textbf{总结：}以上AI工具的使用均限于文献检索、方法原理解释、代码辅助和图表生成建议。所有模型公式推导、数值计算、论文核心论证和最终决策均由作者独立完成。
+
+
