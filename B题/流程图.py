@@ -100,84 +100,84 @@ def draw_flowchart(lang='cn'):
             'q4_b': 'A/B Test: Treatment vs Control, 30-day ARPU + Retention',
         }
 
-    fig, ax = plt.subplots(figsize=(14, 16))
+    fig, ax = plt.subplots(figsize=(14, 20))
     ax.set_xlim(0, 14)
-    ax.set_ylim(0, 16)
+    ax.set_ylim(0, 20)
     ax.axis('off')
     ax.set_facecolor(BG)
-    ax.text(7, 15.5, T['title'], ha='center', fontsize=18, fontweight='bold', color=DARK)
+    ax.text(7, 19.2, T['title'], ha='center', fontsize=16, fontweight='bold', color=DARK)
 
-    y = 14.3
+    y = 17.8
 
     # ── DATA ──
-    box(ax, 7, y, 8, 0.9, T['data'], BLUE, fs=11, bold=True)
-    arrow(ax, 7, y-0.45, 7, y-0.9, GRAY, lw=2)
-    y -= 1.15
+    box(ax, 7, y, 6.5, 0.7, T['data'], BLUE, fs=10, bold=True)
+    arrow(ax, 7, y-0.35, 7, y-0.75, GRAY, lw=1.5)
+    y -= 0.95
 
     # ── FEATURE ENGINEERING ──
-    box(ax, 7, y, 5, 0.65, T['fe'], PURPLE, fs=11, bold=True)
-    arrow(ax, 5.5, y-0.33, 3, y-0.85, GRAY, lw=1.8)
-    arrow(ax, 8.5, y-0.33, 11, y-0.85, GRAY, lw=1.8)
-    box(ax, 3, y-1.15, 3.8, 0.6, T['fe_left'], PURPLE, fs=8.5)
-    box(ax, 11, y-1.15, 3.8, 0.6, T['fe_right'], PURPLE, fs=8.5)
-    y -= 1.8
+    box(ax, 7, y, 4, 0.5, T['fe'], PURPLE, fs=10, bold=True)
+    arrow(ax, 5.5, y-0.25, 2.8, y-0.7, GRAY, lw=1.5)
+    arrow(ax, 8.5, y-0.25, 11.2, y-0.7, GRAY, lw=1.5)
+    box(ax, 2.8, y-0.95, 3.2, 0.5, T['fe_left'], PURPLE, fs=7.5)
+    box(ax, 11.2, y-0.95, 3.2, 0.5, T['fe_right'], PURPLE, fs=7.5)
+    y -= 1.55
 
     # ── Q1 (left) + Q2 (right) ──
-    arrow(ax, 3, y+0.35, 3, y, GRAY)
-    arrow(ax, 11, y+0.35, 11, y, GRAY)
+    arrow(ax, 2.8, y+0.3, 2.8, y, GRAY)
+    arrow(ax, 11.2, y+0.3, 11.2, y, GRAY)
 
     # Q1
-    box(ax, 3, y-0.5, 5, 0.65, T['q1_title'], RED, fs=11, bold=True)
-    box(ax, 3, y-1.4, 5, 0.5, T['q1_a'], RED, fs=8.5)
-    arrow(ax, 3, y-0.82, 3, y-1.15, GRAY, lw=1.2)
-    box(ax, 3, y-2.2, 5, 0.5, T['q1_b'], RED, fs=8.5)
-    arrow(ax, 3, y-1.65, 3, y-1.95, GRAY, lw=1.2)
-    box(ax, 3, y-3.0, 5, 0.5, T['q1_c'], RED, fs=8.5)
-    arrow(ax, 3, y-2.45, 3, y-2.75, GRAY, lw=1.2)
-    box(ax, 3, y-3.7, 5, 0.5, T['q1_out'], '#F0C0C0', fs=9, tc=DARK)
-    arrow(ax, 3, y-3.25, 3, y-3.45, GRAY, lw=1.2)
-    q1_bottom = y - 3.95
+    box(ax, 2.8, y-0.4, 4.2, 0.5, T['q1_title'], RED, fs=9, bold=True)
+    box(ax, 2.8, y-1.15, 4.2, 0.4, T['q1_a'], RED, fs=7.5)
+    arrow(ax, 2.8, y-0.65, 2.8, y-0.95, GRAY, lw=1)
+    box(ax, 2.8, y-1.8, 4.2, 0.4, T['q1_b'], RED, fs=7.5)
+    arrow(ax, 2.8, y-1.35, 2.8, y-1.6, GRAY, lw=1)
+    box(ax, 2.8, y-2.45, 4.2, 0.4, T['q1_c'], RED, fs=7.5)
+    arrow(ax, 2.8, y-2.0, 2.8, y-2.25, GRAY, lw=1)
+    box(ax, 2.8, y-3.0, 4.2, 0.4, T['q1_out'], '#F0C0C0', fs=8, tc=DARK)
+    arrow(ax, 2.8, y-2.65, 2.8, y-2.8, GRAY, lw=1)
+    q1_bottom = y - 3.2
 
     # Q2
-    box(ax, 11, y-0.5, 5, 0.65, T['q2_title'], ORANGE, fs=11, bold=True)
-    box(ax, 11, y-1.4, 5, 0.5, T['q2_a'], ORANGE, fs=8.5)
-    arrow(ax, 11, y-0.82, 11, y-1.15, GRAY, lw=1.2)
-    box(ax, 11, y-2.2, 5, 0.5, T['q2_b'], ORANGE, fs=8.5)
-    arrow(ax, 11, y-1.65, 11, y-1.95, GRAY, lw=1.2)
-    box(ax, 11, y-3.0, 5, 0.5, T['q2_c'], ORANGE, fs=8.5)
-    arrow(ax, 11, y-2.45, 11, y-2.75, GRAY, lw=1.2)
-    box(ax, 11, y-3.7, 5, 0.5, T['q2_out'], '#F5D0B0', fs=9, tc=DARK)
-    arrow(ax, 11, y-3.25, 11, y-3.45, GRAY, lw=1.2)
-    q2_bottom = y - 3.95
+    box(ax, 11.2, y-0.4, 4.2, 0.5, T['q2_title'], ORANGE, fs=9, bold=True)
+    box(ax, 11.2, y-1.15, 4.2, 0.4, T['q2_a'], ORANGE, fs=7.5)
+    arrow(ax, 11.2, y-0.65, 11.2, y-0.95, GRAY, lw=1)
+    box(ax, 11.2, y-1.8, 4.2, 0.4, T['q2_b'], ORANGE, fs=7.5)
+    arrow(ax, 11.2, y-1.35, 11.2, y-1.6, GRAY, lw=1)
+    box(ax, 11.2, y-2.45, 4.2, 0.4, T['q2_c'], ORANGE, fs=7.5)
+    arrow(ax, 11.2, y-2.0, 11.2, y-2.25, GRAY, lw=1)
+    box(ax, 11.2, y-3.0, 4.2, 0.4, T['q2_out'], '#F5D0B0', fs=8, tc=DARK)
+    arrow(ax, 11.2, y-2.65, 11.2, y-2.8, GRAY, lw=1)
+    q2_bottom = y - 3.2
 
     y = min(q1_bottom, q2_bottom)
 
     # ── Merge Q1+Q2 → Q3 ──
-    arrow(ax, 3, y, 5.5, y-0.4, GRAY, lw=2)
-    arrow(ax, 11, y, 8.5, y-0.4, GRAY, lw=2)
-    y -= 0.7
+    arrow(ax, 2.8, y, 5.2, y-0.35, GRAY, lw=1.5)
+    arrow(ax, 11.2, y, 8.8, y-0.35, GRAY, lw=1.5)
+    y -= 0.6
 
     # ── Q3 ──
-    box(ax, 7, y-0.5, 10, 0.65, T['q3_title'], GREEN, fs=11, tc=DARK, bold=True)
-    box(ax, 3, y-1.4, 3.5, 0.5, T['q3_a'], GREEN, fs=8.5, tc=DARK)
-    box(ax, 7, y-1.4, 3.5, 0.5, T['q3_b'], GREEN, fs=8.5, tc=DARK)
-    box(ax, 11, y-1.4, 3.5, 0.5, T['q3_c'], GREEN, fs=8.5, tc=DARK)
-    arrow(ax, 7, y-0.82, 3, y-1.15, GRAY, lw=1.2)
-    arrow(ax, 7, y-0.82, 7, y-1.15, GRAY, lw=1.2)
-    arrow(ax, 7, y-0.82, 11, y-1.15, GRAY, lw=1.2)
-    box(ax, 7, y-2.1, 8, 0.5, T['q3_out'], '#C8E6C9', fs=9, tc=DARK)
-    arrow(ax, 3, y-1.65, 7, y-1.85, GRAY, lw=1.2)
-    arrow(ax, 7, y-1.65, 7, y-1.85, GRAY, lw=1.2)
-    arrow(ax, 11, y-1.65, 7, y-1.85, GRAY, lw=1.2)
-    y = y - 2.3
+    box(ax, 7, y-0.4, 8.5, 0.5, T['q3_title'], GREEN, fs=9, tc=DARK, bold=True)
+    box(ax, 2.8, y-1.15, 3, 0.4, T['q3_a'], GREEN, fs=7.5, tc=DARK)
+    box(ax, 7, y-1.15, 3, 0.4, T['q3_b'], GREEN, fs=7.5, tc=DARK)
+    box(ax, 11.2, y-1.15, 3, 0.4, T['q3_c'], GREEN, fs=7.5, tc=DARK)
+    arrow(ax, 7, y-0.65, 2.8, y-0.95, GRAY, lw=1)
+    arrow(ax, 7, y-0.65, 7, y-0.95, GRAY, lw=1)
+    arrow(ax, 7, y-0.65, 11.2, y-0.95, GRAY, lw=1)
+    box(ax, 7, y-1.7, 7, 0.4, T['q3_out'], '#C8E6C9', fs=8, tc=DARK)
+    arrow(ax, 2.8, y-1.35, 7, y-1.5, GRAY, lw=1)
+    arrow(ax, 7, y-1.35, 7, y-1.5, GRAY, lw=1)
+    arrow(ax, 11.2, y-1.35, 7, y-1.5, GRAY, lw=1)
+    y = y - 1.9
 
     # ── Q4 ──
-    arrow(ax, 7, y+0.2, 7, y-0.1, GRAY, lw=2)
-    box(ax, 7, y-0.6, 10, 0.65, T['q4_title'], GRAY, fs=11, bold=True)
-    box(ax, 4, y-1.4, 4.5, 0.5, T['q4_a'], GRAY, fs=8.5)
-    box(ax, 10, y-1.4, 4.5, 0.5, T['q4_b'], GRAY, fs=8.5)
-    arrow(ax, 7, y-0.93, 4, y-1.15, GRAY, lw=1.2)
-    arrow(ax, 7, y-0.93, 10, y-1.15, GRAY, lw=1.2)
+    arrow(ax, 7, y+0.2, 7, y-0.1, GRAY, lw=1.5)
+    box(ax, 7, y-0.5, 8.5, 0.5, T['q4_title'], GRAY, fs=9, bold=True)
+    box(ax, 3.5, y-1.2, 4, 0.4, T['q4_a'], GRAY, fs=7.5)
+    box(ax, 10.5, y-1.2, 4, 0.4, T['q4_b'], GRAY, fs=7.5)
+    arrow(ax, 7, y-0.75, 3.5, y-1.0, GRAY, lw=1)
+    arrow(ax, 7, y-0.75, 10.5, y-1.0, GRAY, lw=1)
 
     plt.tight_layout(pad=0.5)
     return fig
